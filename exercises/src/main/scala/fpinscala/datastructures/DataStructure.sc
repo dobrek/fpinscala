@@ -14,3 +14,6 @@ val x = List(1, 2, 3, 4, 5) match {
 List.tail(List(1, 2, 3, 4))
 List.setHead(List(1, 2, 3, 4), 0)
 List.setHead(Nil, 1)
+List.drop(List(1, 2, 3, 4), 1)
+List.drop(Nil, 1)
+List.dropWhile(List(1, 2, 3, 4), (a: Int) => a <= 2)
