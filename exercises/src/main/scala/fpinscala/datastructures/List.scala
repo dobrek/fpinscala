@@ -110,5 +110,7 @@ object List {
 
   def appendViaFoldRight[A](ax: List[A], bx: List[A]): List[A] = foldRightViaFoldLeft(ax, bx)(Cons(_, _))
 
+  def concat[A](lol: List[List[A]]): List[A] = foldRight(lol, List[A]())(append)
+
   def map[A, B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
