@@ -112,5 +112,5 @@ object List {
 
   def concat[A](lol: List[List[A]]): List[A] = foldRight(lol, List[A]())(append)
 
-  def map[A, B](l: List[A])(f: A => B): List[B] = sys.error("todo")
+  def map[A, B](l: List[A])(f: A => B): List[B] = foldRightViaFoldLeft(l, List[B]())((a, acc) => Cons(f(a), acc))
 }
