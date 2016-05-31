@@ -1,4 +1,4 @@
-import fpinscala.datastructures.List.{length, foldRight, sum}
+import fpinscala.datastructures.List.{foldRight, length, sum}
 import fpinscala.datastructures._
 
 val ex3: List[String] = Cons("a", Cons("b", Nil))
@@ -25,3 +25,6 @@ length(List(1))
 
 List.foldLeft(List(1, 2, 4), 0)(_ + _)
 List.foldLeft(List(1, 2, 3, 4), 1)(_ * _)
+
+List.appendViaFoldLeft(List(1, 2, 3), List(4, 5, 6))
+List.appendViaFoldRight(List(1, 2, 3), List(4, 5, 6))

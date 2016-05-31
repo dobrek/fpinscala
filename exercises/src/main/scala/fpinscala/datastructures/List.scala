@@ -100,5 +100,9 @@ object List {
 
   def length3[A](l: List[A]): Int = foldLeft(l, 0)((len, _) => len + 1)
 
+  def appendViaFoldLeft[A](ax: List[A], ay: List[A]): List[A] = foldLeft(ax, ay)((b, a) => Cons(a, b))
+
+  def appendViaFoldRight[A](ax: List[A], ay: List[A]): List[A] = foldRight(ax, ay)(Cons(_, _))
+
   def map[A, B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
