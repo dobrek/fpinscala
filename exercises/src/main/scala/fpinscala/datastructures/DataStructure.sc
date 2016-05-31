@@ -22,3 +22,6 @@ List.init(Nil)
 
 foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
 length(List(1))
+
+List.foldLeft(List(1, 2, 4), 0)(_ + _)
+List.foldLeft(List(1, 2, 3, 4), 1)(_ * _)
