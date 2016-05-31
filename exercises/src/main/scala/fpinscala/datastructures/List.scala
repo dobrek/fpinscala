@@ -113,4 +113,6 @@ object List {
   def concat[A](lol: List[List[A]]): List[A] = foldRight(lol, List[A]())(append)
 
   def map[A, B](l: List[A])(f: A => B): List[B] = foldRightViaFoldLeft(l, List[B]())((a, acc) => Cons(f(a), acc))
+
+  def filter[A](as: List[A])(f: A => Boolean): List[A] = foldRight(as, List[A]())((a, acc) => if (f(a)) Cons(a, acc) else acc)
 }

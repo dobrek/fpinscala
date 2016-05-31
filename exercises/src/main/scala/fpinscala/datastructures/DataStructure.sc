@@ -35,3 +35,4 @@ List.reverse(List(1, 2, 3))
 
 List.concat(List(List(1, 2, 3), List(3, 4)))
 List.map(List(1, 2, 3))(_ + 1)
+List.filter(List(1, 2, 3, 4, 5, 6))(_ % 2 > 0)
