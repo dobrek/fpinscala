@@ -21,6 +21,7 @@ List.init(List(1, 2, 3, 4, 5))
 List.init(Nil)
 
 foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
+List.foldRightViaFoldLeft(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
 length(List(1))
 
 List.foldLeft(List(1, 2, 4), 0)(_ + _)
