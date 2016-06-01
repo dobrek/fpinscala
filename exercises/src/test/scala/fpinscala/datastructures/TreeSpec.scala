@@ -49,8 +49,8 @@ class TreeSpec extends FunSuite with TableDrivenPropertyChecks with Matchers {
     )
 
     // when & then
-    forAll(trees) { (tree, max) =>
-      Tree.depth(tree) should be(max)
+    forAll(trees) { (tree, depth) =>
+      Tree.depth(tree) should be(depth)
     }
 
   }

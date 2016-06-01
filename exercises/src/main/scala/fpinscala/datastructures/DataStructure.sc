@@ -1,7 +1,6 @@
 import fpinscala.datastructures.List._
-import fpinscala.datastructures.Leaf
 import fpinscala.datastructures.Tree.size
-import fpinscala.datastructures._
+import fpinscala.datastructures.{Leaf, _}
 
 val ex3: List[String] = Cons("a", Cons("b", Nil))
 
@@ -48,3 +47,5 @@ hasSubsequence(List(1, 2, 3, 4), Nil: List[Int])
 size(Branch(Leaf(1), Leaf(2))) == 3
 size(Branch(Leaf(1), Branch(Leaf(2), Leaf(3)))) == 5
 size(Leaf(1)) == 1
+
+Tree.mapViaFold(Branch(Leaf(1), Branch(Leaf(2), Leaf(3))))(_ + 1)
