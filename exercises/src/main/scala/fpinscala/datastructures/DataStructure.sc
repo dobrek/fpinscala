@@ -1,33 +1,43 @@
+import fpinscala.datastructures.List._
 import fpinscala.datastructures._
 
 val ex3: List[String] = Cons("a", Cons("b", Nil))
 
-List.tail(List(1, 2, 3, 4))
-List.setHead(List(1, 2, 3, 4), 0)
-List.setHead(Nil, 1)
-List.drop(List(1, 2, 3, 4), 1)
-List.drop(Nil, 1)
-List.dropWhile(List(1, 2, 3, 4), (a: Int) => a <= 2)
-List.init(List(1, 2, 3, 4, 5))
-List.init(Nil)
+tail(List(1, 2, 3, 4))
+setHead(List(1, 2, 3, 4), 0)
+setHead(Nil, 1)
+drop(List(1, 2, 3, 4), 1)
+drop(Nil, 1)
+dropWhile(List(1, 2, 3, 4), (a: Int) => a <= 2)
+init(List(1, 2, 3, 4, 5))
+init(Nil)
 
-List.foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
-List.foldRightViaFoldLeft(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
-List.length(List(1))
+foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
+foldRightViaFoldLeft(List(1, 2, 3), Nil: List[Int])(Cons(_, _))
+length(List(1))
 
-List.foldLeft(List(1, 2, 4), 0)(_ + _)
-List.foldLeft(List(1, 2, 3, 4), 1)(_ * _)
+foldLeft(List(1, 2, 4), 0)(_ + _)
+foldLeft(List(1, 2, 3, 4), 1)(_ * _)
 
-List.appendViaFoldLeft(List(1, 2, 3), List(4, 5, 6))
-List.appendViaFoldRight(List(1, 2, 3), List(4, 5, 6))
+appendViaFoldLeft(List(1, 2, 3), List(4, 5, 6))
+appendViaFoldRight(List(1, 2, 3), List(4, 5, 6))
 
 
-List.reverse(List(1, 2, 3))
+reverse(List(1, 2, 3))
 
-List.concat(List(List(1, 2, 3), List(3, 4)))
-List.map(List(1, 2, 3))(_ + 1)
-List.filter(List(1, 2, 3, 4, 5, 6))(_ % 2 > 0)
-List.flatMap(List(1, 2, 3))(i => List(i, i))
-List.filterViaFlatMap(List(1, 2, 3, 4, 5, 6))(_ % 2 > 0)
+concat(List(List(1, 2, 3), List(3, 4)))
+map(List(1, 2, 3))(_ + 1)
+filter(List(1, 2, 3, 4, 5, 6))(_ % 2 > 0)
+flatMap(List(1, 2, 3))(i => List(i, i))
+filterViaFlatMap(List(1, 2, 3, 4, 5, 6))(_ % 2 > 0)
 
-List.zipWith(List(1, 2, 3), List(4, 5, 6))(_ + _)
+zipWith(List(1, 2, 3), List(4, 5, 6))(_ + _)
+
+hasSubsequence(List(1, 2, 3, 4), List(1, 2, 3))
+!hasSubsequence(List(1, 2), List(1, 2, 3))
+hasSubsequence(List(1, 2, 3, 4), List(2, 3))
+hasSubsequence(List(0, 1, 2, 3, 4, 5), List(2, 3))
+hasSubsequence(List(1, 2, 3, 4), List(4))
+!hasSubsequence(List(1, 2, 3, 4), List(1, 5))
+!hasSubsequence(Nil: List[Int], List(1, 5))
+hasSubsequence(List(1, 2, 3, 4), Nil: List[Int])

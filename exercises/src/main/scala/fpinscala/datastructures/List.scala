@@ -125,6 +125,18 @@ object List {
     case (Nil, _) => Nil
     case (Cons(ha, ta), Cons(hb, th)) => Cons(f(ha, hb), zipWith(ta, th)(f))
   }
+
+  def startWith[A](a: List[A], b: List[A]): Boolean = (a, b) match {
+    case (_, Nil) => true
+    case (Cons(ha, ta), Cons(hb, tb)) if ha == hb => startWith(ta, tb)
+    case _ => false
+  }
+
+  def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = sup match {
+    case Nil => sub == Nil
+    case _ if startWith(sup, sub) => true
+    case Cons(_, t) => hasSubsequence(t, sub)
+  }
 }
 
 
