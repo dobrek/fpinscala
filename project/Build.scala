@@ -20,7 +20,9 @@ object FPInScalaBuild extends Build {
   lazy val exercises =
     Project(id = "exercises",
             base = file("exercises"),
-            settings = opts)
+            settings = opts ++ Seq(
+              libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.6" % "test"
+            ))
   lazy val answers =
     Project(id = "answers",
             base = file("answers"),
