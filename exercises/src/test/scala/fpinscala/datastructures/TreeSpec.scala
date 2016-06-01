@@ -39,4 +39,20 @@ class TreeSpec extends FunSuite with TableDrivenPropertyChecks with Matchers {
     }
   }
 
+  test("depth returns the maximum path length from the root of a tree to any leaf") {
+    // given
+    val trees = Table(
+      ("tree", "depth"),
+      (Branch(Leaf(1), Leaf(2)), 1),
+      (Branch(Leaf(1), Branch(Leaf(2), Leaf(3))), 2),
+      (Leaf(1), 0)
+    )
+
+    // when & then
+    forAll(trees) { (tree, max) =>
+      Tree.depth(tree) should be(max)
+    }
+
+  }
+
 }
