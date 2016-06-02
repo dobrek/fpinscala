@@ -13,9 +13,6 @@ project.vim
 .idea_modules/
 chaptercode/
 exercises/src/main/java/
-exercises/src/main/resources/
 exercises/src/test/java/
-exercises/src/test/resources/
 project/plugins.sbt
 project/project/
-src/
