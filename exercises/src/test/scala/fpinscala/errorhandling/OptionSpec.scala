@@ -171,5 +171,18 @@ class OptionSpec extends FunSpec with Matchers {
 
     }
 
+    describe("sequence via traverse") {
+      val values = List(1, 2, 3)
+
+      it("returns all the Some values when all Options are not empty") {
+        Option.sequenceViaTraverse(values.map(Some(_))) should be(Some(values))
+      }
+
+      it("returns None when at least one of the elements is empty") {
+        Option.sequenceViaTraverse(None :: values.map(Some(_))) should be(None)
+      }
+
+    }
+
   }
 }
