@@ -110,4 +110,53 @@ class OptionSpec extends FunSpec with Matchers {
     }
   }
 
+  describe("Option helpers") {
+
+    describe("map2 - combines two Option values using a binary function") {
+
+      val a = Random.nextInt(100)
+      val b = Random.nextInt(100)
+      val sumFn: (Int, Int) => Int = _ + _
+
+      it("If either Option value is None, then the return mapped value is too") {
+        Option.map2(Some(a), Some(b))(sumFn) should be(Some(sumFn(a, b)))
+      }
+
+      it("If first Option value is None, then the return None") {
+        Option.map2(None, Some(b))(sumFn) should be(None)
+      }
+
+      it("If second Option value is None, then the return None") {
+        Option.map2(Some(a), None)(sumFn) should be(None)
+      }
+
+      it("If both Option values are None, then the return None") {
+        Option.map2(None, None)(sumFn) should be(None)
+      }
+    }
+
+    describe("map2viaFlatMap - combines two Option values using a binary function") {
+
+      val a = Random.nextInt(100)
+      val b = Random.nextInt(100)
+      val sumFn: (Int, Int) => Int = _ + _
+
+      it("If either Option value is None, then the return mapped value is too") {
+        Option.map2viaFlatMap(Some(a), Some(b))(sumFn) should be(Some(sumFn(a, b)))
+      }
+
+      it("If first Option value is None, then the return None") {
+        Option.map2viaFlatMap(None, Some(b))(sumFn) should be(None)
+      }
+
+      it("If second Option value is None, then the return None") {
+        Option.map2viaFlatMap(Some(a), None)(sumFn) should be(None)
+      }
+
+      it("If both Option values are None, then the return None") {
+        Option.map2viaFlatMap(None, None)(sumFn) should be(None)
+      }
+    }
+
+  }
 }
