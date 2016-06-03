@@ -158,5 +158,18 @@ class OptionSpec extends FunSpec with Matchers {
       }
     }
 
+    describe("sequence - combines a list of Options into one Option containing a list of all the Some values in the original list") {
+      val values = List(1, 2, 3)
+
+      it("returns all the Some values when all Options are not empty") {
+        Option.sequence(values.map(Some(_))) should be(Some(values))
+      }
+
+      it("returns None when at least one of the elements is empty") {
+        Option.sequence(None :: values.map(Some(_))) should be(None)
+      }
+
+    }
+
   }
 }
