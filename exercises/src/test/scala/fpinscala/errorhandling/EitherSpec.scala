@@ -68,4 +68,29 @@ class EitherSpec extends FunSpec with Matchers {
     }
   }
 
+  describe("map2 - combines it with other Either values using a binary function") {
+
+    val a = Random.nextInt(100)
+    val b = Random.nextInt(100)
+    val error = Random.nextString(10)
+    val sumFn: (Int, Int) => Int = _ + _
+
+    it("If either value is None, then the return mapped value is too") {
+      Right(a).map2(Right(b))(sumFn) should be(Right(sumFn(a, b)))
+    }
+
+    it("If either value is Left, then the return Left") {
+      Left(error).map2(Right(b))(sumFn) should be(Left(error))
+    }
+
+    it("If second either value is Left, then the return type is Left") {
+      Right(a).map2(Left(error))(sumFn) should be(Left(error))
+    }
+
+    it("If both Eiters values are Left, then the return the first left") {
+      Left(error).map2(Left(Random.nextString(10)))(sumFn) should be(Left(error))
+    }
+  }
+
+
 }
