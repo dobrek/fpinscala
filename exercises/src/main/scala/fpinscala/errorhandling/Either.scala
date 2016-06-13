@@ -5,7 +5,7 @@ import scala.{Either => _, Left => _, Option => _, Right => _}
 
 // hide std library `Option` and `Either`, since we are writing our own in this chapter
 
-sealed trait Either[+E,+A] {
+sealed trait Either[+E, +A] {
   def map[B](f: A => B): Either[E, B] = this match {
     case Left(e) => Left(e)
     case Right(a) => Right(f(a))
@@ -30,26 +30,35 @@ sealed trait Either[+E,+A] {
 }
 
 
-case class Left[+E](get: E) extends Either[E,Nothing]
-case class Right[+A](get: A) extends Either[Nothing,A]
+case class Left[+E](get: E) extends Either[E, Nothing]
+
+case class Right[+A](get: A) extends Either[Nothing, A]
 
 object Either {
-  def traverse[E,A,B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] = sys.error("todo")
 
-  def sequence[E,A](es: List[Either[E,A]]): Either[E,List[A]] = sys.error("todo")
+  def traverse[E, A, B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] = sys.error("todo")
 
-  def mean(xs: IndexedSeq[Double]): Either[String, Double] = 
-    if (xs.isEmpty) 
+  def sequence[E, A](es: List[Either[E, A]]): Either[E, List[A]] = es match {
+    case (h :: tail) => h.map2(sequence(tail))(_ :: _)
+    case _ => Right(Nil)
+  }
+
+  def mean(xs: IndexedSeq[Double]): Either[String, Double] =
+    if (xs.isEmpty)
       Left("mean of empty list!")
-    else 
+    else
       Right(xs.sum / xs.length)
 
-  def safeDiv(x: Int, y: Int): Either[Exception, Int] = 
+  def safeDiv(x: Int, y: Int): Either[Exception, Int] =
     try Right(x / y)
-    catch { case e: Exception => Left(e) }
+    catch {
+      case e: Exception => Left(e)
+    }
 
   def Try[A](a: => A): Either[Exception, A] =
     try Right(a)
-    catch { case e: Exception => Left(e) }
+    catch {
+      case e: Exception => Left(e)
+    }
 
 }

@@ -92,5 +92,21 @@ class EitherSpec extends FunSpec with Matchers {
     }
   }
 
+  describe("Either companion object") {
+
+    describe("sequence - combines a list of Eithers into one Either returns the first error that’s encountered, if there is one") {
+      val values = List(1, 2, 3)
+
+      it("returns all the values when all Eithers have 'right' value") {
+        Either.sequence(values.map(Right(_))) should be(Right(values))
+      }
+
+      it("returns first 'left' when at least one of the elements is 'left'") {
+        Either.sequence(Right(1) :: values.map(Left(_))) should be(Left(values.head))
+      }
+
+    }
+
+  }
 
 }
