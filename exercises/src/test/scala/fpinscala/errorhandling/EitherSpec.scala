@@ -1,5 +1,6 @@
 package fpinscala.errorhandling
 
+import fpinscala.errorhandling.Either.{sequence, traverse}
 import org.scalatest.{FunSpec, Matchers}
 
 import scala.util.Random
@@ -98,13 +99,26 @@ class EitherSpec extends FunSpec with Matchers {
       val values = List(1, 2, 3)
 
       it("returns all the values when all Eithers have 'right' value") {
-        Either.sequence(values.map(Right(_))) should be(Right(values))
+        sequence(values.map(Right(_))) should be(Right(values))
       }
 
       it("returns first 'left' when at least one of the elements is 'left'") {
-        Either.sequence(Right(1) :: values.map(Left(_))) should be(Left(values.head))
+        sequence(Right(1) :: values.map(Left(_))) should be(Left(values.head))
+      }
+    }
+
+    describe("traverse") {
+
+      val values = List(1, 2, 3)
+      val mapFn: (Int) => Int = _ + 1
+
+      it("returns all the values when all Eithers have 'right' value") {
+        traverse(values)(a => Right(mapFn(a))) should be(Right(values.map(mapFn)))
       }
 
+      it("returns first 'left' when at least one of the elements is 'left'") {
+        traverse(values)(Left(_)) should be(Left(values.head))
+      }
     }
 
   }
