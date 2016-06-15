@@ -112,11 +112,11 @@ class EitherSpec extends FunSpec with Matchers {
       val values = List(1, 2, 3)
       val mapFn: (Int) => Int = _ + 1
 
-      it("returns all the values when all Eithers have 'right' value") {
+      it("returns as right with all values when all Eithers become 'right'") {
         traverse(values)(a => Right(mapFn(a))) should be(Right(values.map(mapFn)))
       }
 
-      it("returns first 'left' when at least one of the elements is 'left'") {
+      it("returns as 'left' when at least one of the result is 'left'") {
         traverse(values)(Left(_)) should be(Left(values.head))
       }
     }
