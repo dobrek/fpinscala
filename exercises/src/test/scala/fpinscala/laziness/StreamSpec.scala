@@ -40,4 +40,14 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(values: _*).drop(n).toList should be(values.drop(n))
   }
 
+  "takeWhile" should "returning all starting elements of a Stream that match the given predicate" in {
+    // given
+    val values = List(0, 1, 1, 2, 3, 5, 8, 13)
+    val predicate: Int => Boolean = _ < 5
+
+    // when & then
+    Stream(values: _*).takeWhile(predicate).toList should be(values.filter(predicate))
+  }
+
+
 }
