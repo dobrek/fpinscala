@@ -49,5 +49,19 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(values: _*).takeWhile(predicate).toList should be(values.filter(predicate))
   }
 
+  "forAll" should "return true when all elements in the Stream match a given predicatee" in {
+    // when & then
+    Stream(0, 2, 3, 4).forAll(_ < 5) should be(true)
+  }
+
+  it should "return false when at least one element in the Stream does not match a given predicatee" in {
+    // when & then
+    Stream(1, 2, 5).forAll(_ < 4) should be(false)
+  }
+
+  ignore should "use lazy evaluation" in {
+    // when & then
+    Stream(1, 2, 5, ???).forAll(_ < 4) should be(false)
+  }
 
 }
