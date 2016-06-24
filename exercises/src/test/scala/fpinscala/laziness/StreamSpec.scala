@@ -73,4 +73,9 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(1, 2, 5, ???).forAll(_ < 4) should be(false)
   }
 
+  "optionHead" should "take first element from stream as Option" in {
+    // when & then
+    Stream(1, 2, 3).headOption should be(Option(1))
+  }
+
 }
