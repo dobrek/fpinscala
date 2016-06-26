@@ -78,4 +78,13 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(1, 2, 3).headOption should be(Option(1))
   }
 
+  "map" should "transform stream into another stream using mapping function " in {
+    // given
+    val values = List(1, 2, 3, 4)
+    val mapFn: Int => Int = _ + 1
+
+    // when & then
+    Stream(values: _*).map(mapFn).toList should be(values.map(mapFn))
+  }
+
 }

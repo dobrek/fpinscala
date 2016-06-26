@@ -1,6 +1,6 @@
 package fpinscala.laziness
 
-import fpinscala.laziness.Stream.cons
+import fpinscala.laziness.Stream.{cons, empty}
 
 trait Stream[+A] {
 
@@ -56,6 +56,9 @@ trait Stream[+A] {
 
   // 5.7 map, filter, append, flatmap using foldRight. Part of the exercise is
   // writing your own function signatures.
+  def map[B](f: A => B): Stream[B] =
+    foldRight(empty: Stream[B])((a, b) => cons(f(a), b))
+
 
   def startsWith[B](s: Stream[B]): Boolean = sys.error("todo")
 }
