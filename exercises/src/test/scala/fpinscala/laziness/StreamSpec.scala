@@ -87,4 +87,13 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(values: _*).map(mapFn).toList should be(values.map(mapFn))
   }
 
+  "filter" should "create a stream of values that fulfill given predicate " in {
+    // given
+    val values = List(1, 2, 3, 4)
+    val predicateFn: Int => Boolean = _ % 2 == 0
+
+    // when & then
+    Stream(values: _*).filter(predicateFn).toList should be(values.filter(predicateFn))
+  }
+
 }
