@@ -96,4 +96,13 @@ class StreamSpec extends FlatSpec with Matchers {
     Stream(values: _*).filter(predicateFn).toList should be(values.filter(predicateFn))
   }
 
+  "append" should "add a stream of values at the end of the stream" in {
+    // given
+    val values = List(1, 2, 3, 4)
+    val newValues = List(Random.nextInt, Random.nextInt)
+
+    // when & then
+    Stream(values: _*).append(Stream(newValues: _*)).toList should be(values ::: newValues)
+  }
+
 }
